@@ -1,29 +1,38 @@
 # xiaomi_lds_myhome
 
+## Introduction
 
+I have experimented SLAM in my home with a spare part of Xiaomi Mi robot (first version) years ago. Back in those days there were no cheaper alternatives to LiDAR sensors (like RPLIDAR, etc.) so I have developed my own driver for this task. There are two different examples can be run via launch files; GMapping and AMCL using the recorded bag file for SLAM and localization tasks. 
 
+**Note:** Unfortunately I can't release the source code for the driver but nowadays it should be easy to find it on GitHub. Good luck!
 
+## Dependencies
 
-## Cartographer
-
-See: https://google-cartographer-ros.readthedocs.io/en/latest/compilation.html
+Dependencies: Ubuntu 20.04 + ROS Noetic
 
 ```bash
-$ sudo apt-get install -y python3-wstool python3-rosdep ninja-build stow
-
-$ mkdir catkin_ws
-$ cd catkin_ws
-$ wstool init src
-$ wstool merge -t src https://raw.githubusercontent.com/cartographer-project/cartographer_ros/master/cartographer_ros.rosinstall
-$ wstool update -t src
-$ sudo rosdep init
-$ rosdep update
-$ rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y
-$ src/cartographer/scripts/install_abseil.sh
-
-$ catkin build -DCMAKE_BUILD_TYPE=RelWithDebInfo
-$ source devel/setup.bash
-
-$ rosrun cartographer_ros cartographer_rosbag_validate -bag_filename $(rospack find xiaomi_lds_myhome)/demo/my_home.bag
+$ cd catkin_ws/src
+$ git clone https://github.com/salihmarangoz/xiaomi_lds_myhome.git
+$ cd ..
+$ rosdep install --from-paths src --ignore-src -r
+$ catkin build
 ```
 
+## Running
+
+```bash
+$ source devel/setup.bash
+$ roslaunch xiaomi_lds_myhome gmapping_demo.launch
+# or
+$ roslaunch xiaomi_lds_myhome amcl_demo.launch
+```
+
+## Experiment
+
+Well, I didn't have an extra voltage regulator for the motors so I used an Arduino Mini for it. Other regulator is used for powering up the electronic components of LiDAR sensor and the communication via computer done over USB serial port.
+
+![handheld_sensor](imgs/handheld_sensor.png)
+
+
+
+![mapping](imgs/mapping.png)
