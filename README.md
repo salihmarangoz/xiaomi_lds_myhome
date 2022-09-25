@@ -6,6 +6,10 @@ I have experimented SLAM in my home with a spare part of Xiaomi Mi robot (first 
 
 **Note:** Unfortunately I can't release the source code for the driver but nowadays it should be easy to find it on GitHub. Good luck!
 
+Youtube Link: https://youtu.be/7xrRjl9LQ_4
+
+[![](https://img.youtube.com/vi/7xrRjl9LQ_4/0.jpg)](https://youtu.be/7xrRjl9LQ_4)
+
 ## Dependencies
 
 Dependencies: Ubuntu 20.04 + ROS Noetic
@@ -21,7 +25,7 @@ $ catkin build
 ## Running
 
 ```bash
-$ source devel/setup.bash
+$ source ~/catkin_ws/devel/setup.bash
 $ roslaunch xiaomi_lds_myhome gmapping_demo.launch
 # or
 $ roslaunch xiaomi_lds_myhome amcl_demo.launch
